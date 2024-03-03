@@ -1,0 +1,26 @@
+typedef struct {
+	int *arr;
+	int top;
+} MyStack;
+MyStack* myStackCreate() {
+	MyStack *stack=(MyStack*)malloc(sizeof(MyStack));
+	stack->arr=(int*)malloc(sizeof(int)*100);
+	stack->top=-1;
+	return stack;
+}
+void myStackPush(MyStack* stack, int x) {
+  stack->arr[++stack->top]=x;
+}
+int myStackPop(MyStack* stack) {
+  return stack->arr[stack->top--];
+}
+int myStackTop(MyStack* stack) {
+  return stack->arr[stack->top];
+}
+bool myStackEmpty(MyStack* stack) {
+  return stack->top==-1;
+}
+void myStackFree(MyStack* stack) {
+	free(stack->arr);
+	free(stack);
+}
