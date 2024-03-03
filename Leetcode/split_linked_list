@@ -1,0 +1,35 @@
+//5b)Leetcode challenge-split linked list
+struct ListNode** splitListToParts(struct ListNode* head, int k, int* returnSize){
+
+    *returnSize = k;
+    struct ListNode **ListArr = (struct ListNode *)malloc(sizeof(struct ListNode)*k);
+
+    int n=0; struct ListNode *temp=head; 
+    while(temp){
+        n++; temp=temp->next;
+    }
+
+    int r=n%k, size; n/=k;
+    ListArr[0]=temp=head;
+
+    for(int i=1; i<k; i++){
+        if(!temp && r<1) ListArr[i] = NULL;
+        else{
+            if (r-- < 1) 
+            {
+                size = n;
+            } 
+            else 
+            {
+                size = n + 1;
+            }
+
+            while(--size)
+                temp=temp->next;
+            ListArr[i] = temp->next;
+            temp->next=NULL;
+            temp=ListArr[i];
+        }
+    }
+    return ListArr;
+}
