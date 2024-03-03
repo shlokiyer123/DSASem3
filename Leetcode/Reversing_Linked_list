@@ -1,0 +1,15 @@
+//4b)LeetCode challenge- Reverse a linked list
+struct ListNode* reverseList(struct ListNode* head) {
+    struct ListNode *iter=head;
+    struct ListNode *prev=NULL;
+   
+    while(iter !=NULL)
+    {  
+        struct ListNode *nextnode=iter->next;
+        iter->next=prev;
+        prev=iter;
+        iter=nextnode;
+    }
+    return prev;
+   
+}
